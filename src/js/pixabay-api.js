@@ -14,6 +14,16 @@ export default function getImagesByQuery(query){
 
 .then(response => {
     return response.data.hits})
-	.catch(error => console.log(error))
+	.catch(error => {
+
+console.error('Failed to render gallery:', error);
+    
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to create gallery. Please try again.',
+    });
+    throw error;
+
+    })
 }
 

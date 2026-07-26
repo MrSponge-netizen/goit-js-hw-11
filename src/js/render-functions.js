@@ -14,8 +14,7 @@ let lightbox = new SimpleLightbox('.gallery a', {
     navText: ['←', '→'], // Custom text arrows for desktop navigation
   });
 export function createGallery(images) {
-  showLoader();
-  clearGallery();
+  
   var docFrag = document.createDocumentFragment();
 
   images.forEach(function ({ previewURL, largeImageURL, name }) {
@@ -46,7 +45,7 @@ export function createGallery(images) {
   gallery.appendChild(docFrag);
 
  lightbox.refresh();
- hideLoader();
+ 
 }
 
 export function clearGallery() {

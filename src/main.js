@@ -8,19 +8,7 @@ import "izitoast/dist/css/iziToast.min.css";
 
 const form = document.querySelector('.form');
 
-const makePromise = ( { value, delay, shouldResolve = true } ) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
 
-      console.log("making promise");
-      if (shouldResolve) {
-        resolve(value);
-      } else {
-        reject(value);
-      }
-    }, delay);
-  });
-};
 
 
 form.addEventListener('submit', evt => {
@@ -29,7 +17,12 @@ form.addEventListener('submit', evt => {
   const userInput = form.elements['search-text'].value.trim();;
 
   if (userInput == '') {
-    alert('Fill please all fields');
+    iziToast.show({
+        title: 'Fill please all fields',
+        color: 'white',
+        position: 'topCenter',
+        //message: 'Please choose a date in the future',
+      });
     return false;
   }
 getImagesByQuery(userInput)
@@ -48,13 +41,27 @@ getImagesByQuery(userInput)
      
 
       console.log(`Found ${images.length} images:`, images);
-      
+      showLoader();
+  clearGallery();
       createGallery(images);
       
       
       // Process or render your images here
     }
-  });
+  }
+  )
+  .catch(error => {
+
+console.error('Failed to render gallery:', error);
+    
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to create gallery. Please try again.',
+    });
+    throw error;
+
+    })
+  .finally(hideLoader())
 
   console.log(userInput);
   form.reset();
