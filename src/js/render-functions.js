@@ -8,7 +8,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector('.gallery');
 let lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'title', // Use the 'title' attribute text for captions
+    captionsData: 'alt', // Use the 'title' attribute text for captions
     captionDelay: 250, // Delay caption presentation by 250ms
     loop: true, // Enable continuous looping through images
     navText: ['←', '→'], // Custom text arrows for desktop navigation
