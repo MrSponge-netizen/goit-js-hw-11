@@ -25,6 +25,9 @@ form.addEventListener('submit', evt => {
       });
     return false;
   }
+
+   showLoader();
+    clearGallery();
 getImagesByQuery(userInput)
   .then(images => {
     if (images.length === 0) {
@@ -41,8 +44,8 @@ getImagesByQuery(userInput)
      
 
       console.log(`Found ${images.length} images:`, images);
-      showLoader();
-  clearGallery();
+     
+ 
       createGallery(images);
       
       
@@ -54,11 +57,7 @@ getImagesByQuery(userInput)
 
 console.error('Failed to render gallery:', error);
     
-    iziToast.error({
-      title: 'Error',
-      message: 'Failed to create gallery. Please try again.',
-    });
-    throw error;
+   
 
     })
   .finally(hideLoader())

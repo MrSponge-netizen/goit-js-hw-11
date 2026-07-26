@@ -17,8 +17,8 @@ export function createGallery(images) {
   
   var docFrag = document.createDocumentFragment();
 
-  images.forEach(function ({ previewURL, largeImageURL, name }) {
-    console.log('previewURL' + previewURL);
+  images.forEach(function ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) {
+    console.log('webformatURL' + webformatURL);
     const li = document.createElement('li');
     li.className = 'gallery-item';
 
@@ -30,8 +30,19 @@ export function createGallery(images) {
     var img = document.createElement('img');
 
     img.className = 'gallery-image';
-    img.src = previewURL;
+    img.src = webformatURL;
     img.alt = name;
+
+    var likes_ = document.createElement('p');
+    likes_.textContent = likes;
+     var tags_ = document.createElement('p');
+    tags_.textContent = tags;
+    var views_ = document.createElement('p');
+    views_.textContent = views;
+     var comments_ = document.createElement('p');
+    comments_.textContent = comments;
+     var downloads_ = document.createElement('p');
+    downloads_.textContent = downloads;
     //  img.setAttribute('datasource', largeImageURL);
 
     img.dataset.source = largeImageURL;
