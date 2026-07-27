@@ -57,13 +57,15 @@ getImagesByQuery(userInput)
   .catch(error => {
 
 console.error('Failed to render gallery:', error);
-    
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to create gallery. Please try again.',
+    });
    
 
     })
-  .finally(() => hideLoader())
+  
 
   console.log(userInput);
   form.reset();
-  return false;
 });

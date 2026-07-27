@@ -18,12 +18,10 @@ export default function getImagesByQuery(query){
 
 console.error('Failed to render gallery:', error);
     
-    iziToast.error({
-      title: 'Error',
-      message: 'Failed to create gallery. Please try again.',
-    });
+    
     throw error;
 
     })
+    .finally(() => hideLoader())
 }
 
