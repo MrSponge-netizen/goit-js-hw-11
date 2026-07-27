@@ -16,12 +16,12 @@ export default function getImagesByQuery(query){
     return response.data})
 	.catch(error => {
 
-console.error('Failed to render gallery:', error);
+console.error('Failed to request:', error);
     
     
     throw error;
 
     })
-    .finally(() => hideLoader())
+    
 }
 

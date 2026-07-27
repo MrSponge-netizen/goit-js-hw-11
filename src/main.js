@@ -52,6 +52,7 @@ getImagesByQuery(userInput)
       
       // Process or render your images here
     }
+    hideLoader()
   }
   )
   .catch(error => {
@@ -61,11 +62,10 @@ console.error('Failed to render gallery:', error);
       title: 'Error',
       message: 'Failed to create gallery. Please try again.',
     });
-   
+   hideLoader()
 
     })
   
-
   console.log(userInput);
   form.reset();
 });
