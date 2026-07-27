@@ -3,11 +3,15 @@ import iziToast from 'izitoast';
 // Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
 
-import SimpleLightbox from 'simplelightbox/dist/simple-lightbox.esm'; //
+import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+// Перевіряємо, чи повернувся конструктор напряму, чи він схований у .default
+const Lightbox = typeof SimpleLightbox === 'function' ? SimpleLightbox : SimpleLightbox.default;
+
+
 const gallery = document.querySelector('.gallery');
-let lightbox = new SimpleLightbox('.gallery a', {
+let lightbox = new Lightbox('.gallery a', {
     captionsData: 'alt', // Use the 'title' attribute text for captions
     captionDelay: 250, // Delay caption presentation by 250ms
     loop: true, // Enable continuous looping through images
@@ -25,28 +29,30 @@ export function createGallery(images) {
     const link = document.createElement('a');
     link.className = 'gallery-link';
     link.href = largeImageURL;
-    link.ariaDisabled = true;
+    //link.ariaDisabled = true;
 
     var img = document.createElement('img');
 
     img.className = 'gallery-image';
     img.src = webformatURL;
-    img.alt = name;
+    img.alt = tags;
 
     var likes_ = document.createElement('p');
-    likes_.textContent = likes;
-     var tags_ = document.createElement('p');
-    tags_.textContent = tags;
+    likes_.textContent = "likes: " +likes;
     var views_ = document.createElement('p');
-    views_.textContent = views;
+    views_.textContent = "views: " +views;
      var comments_ = document.createElement('p');
-    comments_.textContent = comments;
+    comments_.textContent ="comments: " + comments;
      var downloads_ = document.createElement('p');
-    downloads_.textContent = downloads;
+    downloads_.textContent ="downloads: " + downloads;
     //  img.setAttribute('datasource', largeImageURL);
 
     img.dataset.source = largeImageURL;
 
+    link.appendChild(likes_);
+    link.appendChild(views_);
+    link.appendChild(comments_);
+    link.appendChild(downloads_);
     link.appendChild(img);
 
     li.appendChild(link);

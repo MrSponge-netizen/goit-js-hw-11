@@ -29,7 +29,8 @@ form.addEventListener('submit', evt => {
    showLoader();
     clearGallery();
 getImagesByQuery(userInput)
-  .then(images => {
+  .then(data => {
+    const images = data.hits;
     if (images.length === 0) {
       iziToast.show({
         title: 'Sorry, there are no images matching your search query. Please try again!',
@@ -60,7 +61,7 @@ console.error('Failed to render gallery:', error);
    
 
     })
-  .finally(hideLoader())
+  .finally(() => hideLoader())
 
   console.log(userInput);
   form.reset();

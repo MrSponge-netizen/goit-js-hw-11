@@ -13,7 +13,7 @@ export default function getImagesByQuery(query){
 )
 
 .then(response => {
-    return response.data.hits})
+    return response.data})
 	.catch(error => {
 
 console.error('Failed to render gallery:', error);
